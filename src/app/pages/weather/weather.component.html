@@ -1,0 +1,64 @@
+<div class="container">
+
+    <h1> Weather dashboard <strong> challenge </strong> </h1>
+    <hr>
+  
+    <div class="row">
+      <div class="col">
+        <app-graph [dateStart]="dateToDraw" [reDrawGraph]="reDrawGraph" [lineData]="_citiesToSend"> </app-graph>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col">
+              <app-weather-graph-actions (dateStart)="changeDate($event)" 
+                                         (sendCities)="setCitiesSelected($event)"
+                                         (sendCity)="citySelected($event)" 
+                                         (sendScale)="setScale($event)"
+                                         (removeCitySelected)="spliceCitiesData($event)"
+                                         [cities]="_cities" 
+                                         [scales]="_scales"
+                                         > </app-weather-graph-actions>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-1">
+            <p class="font-weight-bold"> Date </p>
+          </div>
+          <div class="col-5">
+              <input type="date" class="form-control" (change)="addDateToGraph($event.target.value)"/>
+          </div>
+          <div class="col-1">
+              <p class="font-weight-bold"> Days </p>
+            </div>
+            <div class="col-5">
+                <input type="number" class="form-control" min="2" max="16" [(ngModel)]="_days" (change)="changeDays($event.target.value)"/>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3" *ngFor="let city of _citiesToShow; let i = index">
+        <h3> {{city.label}} </h3>
+        <table class="table table-bordered overflowTable">
+          <thead class="thead-dark">
+            <tr>
+              <th> date </th>
+              <th> temp </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let info of city.data.data">
+              <th> 
+                <p> {{info.datetime}} </p> 
+              </th>
+              <th> 
+                <p> {{info.data}} </p> 
+              </th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+  </div>

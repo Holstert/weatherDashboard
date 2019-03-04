@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-1"> <p> City </p> </div>
+  <div class="col-11"> 
+    <select class="form-control" style="width: 100%" (change)="addCity($event.target.value); sendCitySelected($event.target.value); sendCitiesArray()">
+      <option> {{_citiesCopy.length > 0?'Choose a city':'No city'}} </option>
+      <option *ngFor="let item of _citiesCopy; let i = index"> {{item.city}} </option>
+    </select>
+  </div>
+</div>
+
+<div class="row" *ngIf="_citiesSelected.length > 0">
+  <div class="col-12"> 
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th style="width: 90%"> City </th>
+          <th> Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of _citiesSelected">
+          <th> <button class="btn btn-link" (click)="_citiesSelected.length > 1?revertCity(item, 'remove'):''" data-toggle="tooltip" data-placement="top" title="Remove"> {{item.city}} </button> </th>
+          <th> <button class="btn btn-link" data-toggle="tooltip" title="Remove" (click)="_citiesSelected.length > 1? revertCity(item, 'remove'):''"> <span class="badge badge badge-pill badge-danger">X</span></button> </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-1"> <p> Scale </p> </div>
+  <div class="col-11"> 
+    <select class="form-control" style="width: 100%" (change)="changeScale($event.target.value);">
+      <option *ngFor="let item of _scales; let i = index" [value]='i'> {{item.scale}} </option>
+    </select>
+  </div>
+</div>

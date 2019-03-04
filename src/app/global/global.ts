@@ -1,0 +1,1 @@
+export const URL_API = 'https://weather-dashboard-jg.herokuapp.com/';
