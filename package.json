@@ -2,14 +2,16 @@
   "name": "weather-dashboard-challenge",
   "version": "0.0.0",
   "scripts": {
+    "preinstall": "npm install -g @angular/cli @angular/compiler-cli typescript",
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --prod",
+    "heroku-postbuild": "ng build --prod"
   },
-  "heroku-postbuild": "ng build --prod",
   "engines": {
     "node": "8.12.0",
     "npm": "6.4.1"
